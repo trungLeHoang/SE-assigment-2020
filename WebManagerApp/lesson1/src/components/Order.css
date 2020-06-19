@@ -1,0 +1,45 @@
+.contain {
+    padding: 1.5em 1.5em 1em 1.5em; 
+    display: flex;
+    align-items: center;
+    color: aliceblue;
+    background-color: #15161A;
+    border-bottom: 1px solid #CCC;
+}
+
+.onGoing {
+    background-color: darkgreen !important;
+}
+
+.left-component {
+    flex: 1;
+    flex-direction: column;
+}
+
+.left-component .ID {
+    font-size: 1.6em;
+    letter-spacing: 7px;
+    font-weight: 700;
+}
+
+.left-component .item {
+    color: #CCC;
+}
+
+.right-component {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.right-component .pickup {
+    color: #CCC;
+    margin-right: 1em;
+    padding-top: 3px;
+}
+
+.right-component .time {
+    font-size: 1.8em;
+    font-weight: bolder;
+}

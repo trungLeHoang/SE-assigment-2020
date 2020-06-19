@@ -1,0 +1,8 @@
+.search {
+    background-color: #15161A;
+    height: 38px;
+    width: 100%;
+    position: fixed;
+    color: aliceblue;
+    z-index: 4;
+}

@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftUI
+import FirebaseFirestore
+import FirebaseCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

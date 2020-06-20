@@ -5,9 +5,11 @@ import FirebaseFirestore
 import FirebaseCore
 import SDWebImageSwiftUI
 
+//UI
+var OrderID = 2604
 
-var OrderID = 618001
-
+var nOrder = 0
+ 
 struct ContentView: View {
     var body: some View {
         
@@ -139,8 +141,7 @@ struct Mainscreen : View {
         @State var menu = 0
         @State var page = 0
     
-    @State var nOrder = getNumberOfOrder()
-            
+    
         var body: some View{
             
             
@@ -190,7 +191,7 @@ struct Mainscreen : View {
                                 
                                 Button(action: {
                                     self.account.toggle()
-                                    self.nOrderCheck()
+                                    
                                  }) {
                                      
                                      Image("person")
@@ -229,18 +230,6 @@ struct Mainscreen : View {
                     .padding(.vertical)
                 }
             }
-
-    func nOrderCheck() {
-        
-        print("check start")
-        print(self.nOrder.nOrder)
-        print("Int")
-        print(OrderID)
-        print("String")
-        print(String(OrderID))
-        print("check end")
-        
-    }
 }
     
 struct Login : View {
@@ -775,7 +764,7 @@ struct Card : View {
                 .frame(width: self.width - (self.page == self.data.id ? 100 : 150), height: (self.page == self.data.id ? 250 : 200))
                     .cornerRadius(20)
                 
-                Text(self.data.price)
+                Text(self.data.price.stringValue)
                     .fontWeight(.bold)
                     .font(.title)
                     .padding(.top, 20)
@@ -888,14 +877,8 @@ struct Carousel : UIViewRepresentable {
         }
     }
 }
- 
-
-                
-
 
 //Part cart
-
-
 struct Loader : UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<Loader>) -> UIActivityIndicatorView {
@@ -939,7 +922,7 @@ struct OrderView : View {
             VStack(alignment: .leading, spacing: 25) {
                 
                 Text(data.name).fontWeight(.heavy).font(.title)
-                Text(data.price).fontWeight(.heavy).font(.body)
+                Text(data.price.stringValue).fontWeight(.heavy).font(.body)
                 
                 Toggle(isOn : $cash){
                     
@@ -972,7 +955,7 @@ struct OrderView : View {
                         let db = Firestore.firestore()
                         db.collection(String(OrderID))
                             .document()
-                            .setData(["item":self.data.name,"quantity":self.quantity,"quickdelivery":self.quick,"cashondelivery":self.cash,"pic":self.data.image]) { (err) in
+                            .setData(["item":self.data.name,"quantity":self.quantity,"quickdelivery":self.quick,"cashondelivery":self.cash,"pic":self.data.image,"price":self.data.price]) { (err) in
                                 
                                 if err != nil{
                                     
@@ -1064,7 +1047,9 @@ struct CartView : View {
                 
                
                 Button(action:   {
-                    OrderID += 1
+                    nOrder+=1
+                    OrderID+=1
+                    self.addOrder()
                     
                 }) {
                                    
@@ -1084,6 +1069,59 @@ struct CartView : View {
         }.frame(width: UIScreen.main.bounds.width - 110, height: UIScreen.main.bounds.height - 350)
        .background(Color("Color"))
         .cornerRadius(25)
+    }
+  
+   
+    func addOrder(){
+       
+        var STT = 0
+        var ref: DatabaseReference!
+        
+        ref = Database.database().reference().child("orderList").child(String(nOrder))
+        
+        let Order = [
+            "ID" : OrderID,
+            "userID" : "email",
+            "isDone" : "false"
+        ] as [String:Any]
+        
+        ref.setValue(Order)
+        
+        ref=Database.database().reference().child("orderList").child(String(nOrder)).child("itemList")
+        
+        
+        for i in self.cartdata.datas {
+            
+            ref=Database.database().reference().child("orderList").child(String(nOrder)).child("itemList").child(String(STT))
+            
+            let Item = [
+                "name" : i.name,
+                "quantity" : i.quantity,
+                "price" : i.price
+             
+            ] as [String:Any]
+            
+            ref.setValue(Item)
+            
+            STT += 1
+            
+        }
+         
+        
+    }
+    
+    func getnOrder() {
+        var ref: DatabaseReference!
+
+            ref = Database.database().reference()
+            
+        
+           ref.child("nOrder").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let id = snapshot.value as? Int {
+                print("The value from the database: \(id)")
+                nOrder = id
+            }
+            })
     }
 }
 
@@ -1122,9 +1160,7 @@ func textFieldAlertView(id: String)->UIAlertController{
     return alert
 }
 
-
 //Data
-
 class getCartData : ObservableObject{
     
     @Published var datas = [cart]()
@@ -1149,8 +1185,10 @@ class getCartData : ObservableObject{
                     let name = i.document.get("item") as! String
                     let quantity = i.document.get("quantity") as! NSNumber
                     let pic = i.document.get("pic") as! String
+                    let price = i.document.get("price") as! NSNumber
+                   
 
-                    self.datas.append(cart(id: id, name: name, quantity: quantity, pic: pic))
+                    self.datas.append(cart(id: id, name: name, quantity: quantity, pic: pic, price: price ))
                 }
                 
                 if i.type == .modified{
@@ -1202,44 +1240,16 @@ class getCategoriesData : ObservableObject{
     }
 }
 
-class getNumberOfOrder : ObservableObject {
-    
-    @Published var nOrder = [number]()
-    
-    init() {
-        
-        let db = Firestore.firestore()
-        
-        db.collection("Number of Order").addSnapshotListener { (snap, err) in
-            
-            if err != nil{
-                
-                print((err?.localizedDescription)!)
-                return
-            }
-            
-            for i in snap!.documentChanges{
-                
-                let n = i.document.get("number") as! Int
-              
-                self.nOrder.append(number(nOrder: n))
-            
-            }
-        }
-    }
-    
-    
-}
-struct number  {
-    
-    var nOrder : Int
-}
 
+
+
+
+//Type
 struct Type : Identifiable{
         var id : Int
           var name : String
           var cName : String
-          var price : String
+          var price : NSNumber
           var image : String
 }
 
@@ -1258,23 +1268,26 @@ struct cart : Identifiable {
     var name : String
     var quantity : NSNumber
     var pic : String
+    var price: NSNumber
+   
+    
 }
 
 var  data = [
     
-    Type(id: 0, name: "White Rice", cName: "meal", price: "20.000 VNĐ",image: "rice"),
+    Type(id: 0, name: "White Rice", cName: "meal", price: 20000,image: "rice"),
     
-    Type(id: 1, name: "Fired Potatoe", cName: "extra", price: "20.000 VNĐ",image: "friedpotato"),
+    Type(id: 1, name: "Fired Potatoe", cName: "extra", price: 20000,image: "friedpotato"),
       
-      Type(id: 2, name: "France Flan", cName: "dessert", price: "25.000 VNĐ",image: "dessert"),
+      Type(id: 2, name: "France Flan", cName: "dessert", price: 25000,image: "dessert"),
 
-    Type(id: 3, name: "Fresh Milk", cName: "drink", price: "20.000 VNĐ",image: "milk"),
+    Type(id: 3, name: "Fresh Milk", cName: "drink", price: 20000,image: "milk"),
     
-    Type(id: 4, name: "Coffee", cName: "drink", price: "30.000 VNĐ",image: "coffee"),
+    Type(id: 4, name: "Coffee", cName: "drink", price: 30000,image: "coffee"),
     
-    Type(id: 5, name: "Green tea", cName: "drink", price: "10.000 VNĐ",image: "greentea"),
+    Type(id: 5, name: "Green tea", cName: "drink", price: 10000,image: "greentea"),
     
-    Type(id: 6, name: "Bubble milk tea", cName: "drink" , price: "45.000 VNĐ",image: "milktea"),
+    Type(id: 6, name: "Bubble milk tea", cName: "drink" , price: 45000,image: "milktea"),
     
     
 ]

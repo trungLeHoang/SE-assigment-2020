@@ -9,6 +9,7 @@ pod 'Firebase/Auth'
 pod 'GoogleSignIn'
 pod 'RealmSwift'
 pod 'Firebase/Firestore'
+pod 'Firebase/Database'
 pod 'Firebase/Analytics'
 pod 'SDWebImageSwiftUI'
 

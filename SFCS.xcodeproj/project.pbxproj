@@ -18,7 +18,6 @@
 		EFD8A7F2248C9E6600DE60EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD8A7F0248C9E6600DE60EC /* LaunchScreen.storyboard */; };
 		EFD8A7FD248C9E6600DE60EC /* SFCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD8A7FC248C9E6600DE60EC /* SFCSTests.swift */; };
 		EFD8A808248C9E6600DE60EC /* SFCSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD8A807248C9E6600DE60EC /* SFCSUITests.swift */; };
-		EFD8A816248F440C00DE60EC /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD8A815248F440C00DE60EC /* File.swift */; };
 		FC1D438BABC34B39B16EDA0C /* Pods_SFCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC733ED8A45B8C0E2AFD017F /* Pods_SFCS.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +63,6 @@
 		EFD8A803248C9E6600DE60EC /* SFCSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFCSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD8A807248C9E6600DE60EC /* SFCSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFCSUITests.swift; sourceTree = "<group>"; };
 		EFD8A809248C9E6600DE60EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EFD8A815248F440C00DE60EC /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				EF1FE0B8248FEE9C0031A88E /* GoogleService-Info.plist */,
-				EFD8A815248F440C00DE60EC /* File.swift */,
 				EFD8A7E5248C9E6500DE60EC /* AppDelegate.swift */,
 				EFD8A7E7248C9E6500DE60EC /* SceneDelegate.swift */,
 				EFD8A7E9248C9E6500DE60EC /* ContentView.swift */,
@@ -459,7 +456,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD8A7E6248C9E6500DE60EC /* AppDelegate.swift in Sources */,
-				EFD8A816248F440C00DE60EC /* File.swift in Sources */,
 				EFD8A7E8248C9E6500DE60EC /* SceneDelegate.swift in Sources */,
 				EFD8A7EA248C9E6500DE60EC /* ContentView.swift in Sources */,
 			);

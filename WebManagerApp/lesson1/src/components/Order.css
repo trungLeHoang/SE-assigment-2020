@@ -8,7 +8,7 @@
 }
 
 .onGoing {
-    background-color: darkgreen !important;
+    background-color: #3b6978 !important;
 }
 
 .left-component {
@@ -42,4 +42,40 @@
 .right-component .time {
     font-size: 1.8em;
     font-weight: bolder;
+}
+
+.showOrder{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 150px;
+    height: 70%;
+    width: 80%;
+    margin-left: 10%;
+    align-self: center;
+    background-color: rgb(255, 240, 212);
+    border-radius: 10px;
+    z-index: 5;
+}
+
+.title-order {
+    font-size: 1.6em;
+    letter-spacing: 7px;
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.title-order .ID {
+    position: absolute;
+}
+
+.title-order .contain-hidden {
+    width: 100%;
+    display: flex;
+}
+
+.title-order .btn-hidden {
+    height: 42px;
+    position: relative;
 }

@@ -1,6 +1,11 @@
-.OrderList {
-    position: relative;
+.heading {
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.heading .navigation-heading {
     width: 100%;
-    top: 85px;
-    z-index: 1;
+    align-self: center;
 }

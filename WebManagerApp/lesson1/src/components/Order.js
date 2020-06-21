@@ -13,9 +13,21 @@ class Order extends Component {
     this.setState({
       showOrder: true
     });
+  }
 
-    console.log(event.target);
+  onComplete = (event) => {
+    this.setState({
+      showOrder: false
+    });
 
+    /* Change order color */
+    this.props.onComplete(this.props.ID);
+  }
+
+  hiddenOrder = () => {
+    this.setState({
+      showOrder: false
+    });
   }
 
   render(){
@@ -25,7 +37,7 @@ class Order extends Component {
       <div>
             {
               /* show list order, when not show Order */
-              showOrder === false && <div className= {classNames('contain',{
+              <div className= {classNames('contain',{
                 'onGoing': isDone === false })}
                 onClick= {this.showOrder}>
                   <div className='left-component'>
@@ -36,6 +48,28 @@ class Order extends Component {
                       <p className='pickup'>PICK UP</p>
                       <p className='time'>{time}</p>   
                   </div>     
+              </div>
+            }
+            {
+              showOrder === true && 
+              <div className='showOrder'>
+                <div className='title-order'>
+                      <p className='ID'>#{ID}</p>
+                      <div className='contain-hidden'><span
+                          className="input-group-text btn-hidden"
+                          onClick={this.hiddenOrder}
+                      >X</span>
+                      </div>
+                  </div>
+                  <div className='right-component'>
+                      <p className='time'>{time}</p>   
+                  </div> 
+                  <button 
+                    type="button" 
+                    className="btn btn-info btn-order"
+                    onClick={this.onComplete}
+                    >Completed
+                  </button>
               </div>
             }
       </div>

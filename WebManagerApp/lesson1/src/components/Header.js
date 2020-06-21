@@ -7,6 +7,10 @@ class Header extends Component {
     this.props.onSearch(event);
   }
 
+  onSorted = () => {
+    this.props.onSorted();
+  }
+
   render(){
     return(
         <div className='heading'>
@@ -19,7 +23,14 @@ class Header extends Component {
                   className="dropdown-item"
                   name='search'
                   onClick={this.onSearch}
-                  >Search Order</button>
+                  >Search Order
+                </button>
+                <button 
+                  className="dropdown-item"
+                  name='search'
+                  onClick={this.onSorted}
+                  >Sorted Order
+                </button>
                 <button className="dropdown-item disabled" href="#">Disabled action</button>
               </div>
             </div>

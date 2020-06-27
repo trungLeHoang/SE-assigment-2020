@@ -1,3 +1,14 @@
+@keyframes blinkingColor{
+    0%		{ background-color: #000000;}
+    50%		{ background-color: #5c99ac;}
+    100%	{ background-color: #000000;}
+}
+
+@keyframes flyup {
+    from {top: 200px; background-color: #15161A;}
+    to {top: 88px;}
+}
+
 .contain {
     padding: 1.5em 1.5em 1em 1.5em; 
     display: flex;
@@ -8,7 +19,8 @@
 }
 
 .onGoing {
-    background-color: #3b6978 !important;
+    background-color: #3b6978;
+    animation: blinkingColor 1.5s infinite;
 }
 
 .left-component {
@@ -16,7 +28,7 @@
     flex-direction: column;
 }
 
-.left-component .ID {
+.ID {
     font-size: 1.6em;
     letter-spacing: 7px;
     font-weight: 700;
@@ -48,34 +60,109 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 150px;
-    height: 70%;
-    width: 80%;
-    margin-left: 10%;
+    top: 88px;
+    bottom: 0px;
+    width: 100%;
     align-self: center;
-    background-color: rgb(255, 240, 212);
+    background-color: #FFF;
+    animation: flyup 0.5s;
+    animation-fill-mode: forwards;
     border-radius: 10px;
     z-index: 5;
 }
 
-.title-order {
-    font-size: 1.6em;
-    letter-spacing: 7px;
-    font-weight: 700;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.showOrder .heading {
+    background-color: #e9ecef;
+    color: #000;
 }
-.title-order .ID {
+
+.btn-hidden {
+    position: fixed;
+    right: 0px;
+    width: 40px;
+    background-color: #ff9a9a;
+}
+
+.btn-order {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}
+
+.user-info {
+    margin-top: 55px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5%;
+    border-radius: 8px;
+    background-color: #d7d7d754;
+}
+
+.user-info .left {
+    flex: 4
+}
+
+.user-info .left p {
+    margin: 5px;
+    margin-left: 10px;
+}
+
+.user-info .right {
+    flex: 2;
+}
+
+.menu {
+    width: 90%;
+    margin-top: 20px;
+    padding: 10px;
+    margin-left: 5%;
+    border-radius: 8px;
+    overflow: hidden;
+    overflow-y: scroll;
     position: absolute;
+    top: 120px;
+    bottom: 60px;
+    background-color: #d7d7d754;
 }
 
-.title-order .contain-hidden {
-    width: 100%;
+.menu-title {
+    font-size: 18px;
+    font-family: "Amatic SC",cursive;
+}
+
+.menu-price {
+    margin-left: 20px;
+    border-radius: 40px;
+    font-size: 18px;
+    padding: 0 10px;
+    color: #000;
+    background-color: #ffa3a3;
+}
+
+.dishes {
+    margin: 10px;
+    padding: 5px;
+    font-size: 18px;
     display: flex;
+    border-bottom-width: 2px;
+    border-bottom-style: dashed;
 }
 
-.title-order .btn-hidden {
-    height: 42px;
-    position: relative;
+.dishes .quantity {
+    flex: 1;
+}
+
+.dishes .name {
+    flex: 3;
+}
+
+.dishes .price {
+    flex: 1;
+}
+
+.listDishes .conclusion {
+    margin-top: 20px;
+    font-weight: bold;
 }

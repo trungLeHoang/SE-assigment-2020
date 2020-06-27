@@ -3,8 +3,14 @@ import Header from './components/Header';
 import SelectRule from './components/SelectRule'
 import Order from './components/Order'
 import Search from './components/Search'
-
+import firebase from 'firebase/app'
+import firebaseConfig from './firebaseConfig'
 import './Manager.css';
+
+import 'firebase/database'
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var dbOnl = [];
 
 class Manager extends Component {
   constructor(){
@@ -13,18 +19,7 @@ class Manager extends Component {
       isChoosing : 'order',
       isSearching: false,
       isSorting: false,
-      orderList: [
-        {ID: '1234', userID: 'HUNG', item: 4, amount: '999.000', time: '16 : 30', isDone: true},
-        {ID: '6789', userID: 'SANG', item: 8, amount: '888.000', time: '17 : 00', isDone: false},
-        {ID: '1297', userID: 'HUNG', item: 2, amount: '120.000', time: '16 : 59', isDone: true},
-        {ID: '2843', userID: 'SANG', item: 3, amount: '150.000', time: '2 : 30', isDone: false},
-        {ID: '8246', userID: 'HUNG', item: 1, amount: '20.000', time: '4 : 44', isDone: true},
-        {ID: '4321', userID: 'HUNG', item: 4, amount: '999.000', time: '16 : 30', isDone: false},
-        {ID: '9876', userID: 'SANG', item: 8, amount: '888.000', time: '17 : 00', isDone: true},
-        {ID: '3621', userID: 'HUNG', item: 2, amount: '120.000', time: '16 : 59', isDone: true},
-        {ID: '4152', userID: 'SANG', item: 3, amount: '150.000', time: '2 : 30', isDone: false},
-        {ID: '3162', userID: 'HUNG', item: 1, amount: '20.000', time: '4 : 44', isDone: true}
-      ],
+      orderList: [],
       searchedList: []
     };
 
@@ -34,6 +29,36 @@ class Manager extends Component {
     this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
     this.sortOrder = this.sortOrder.bind(this);
     this.onSortOrder = this.onSortOrder.bind(this);
+  }
+
+  componentDidMount(){
+    const db = firebase.database().ref().child('orderList');
+    
+    db.on('value', snap => {
+      //console.log('value', snap.val())
+      if(snap.val()){
+        dbOnl = snap.val();
+        this.setState({
+          orderList: snap.val().reverse()
+        });
+      }
+      if(this.state.isSorting){
+        if(this.state.isSearching)
+          this.onSortSearch(); 
+        else this.onSortOrder();
+      }
+    });
+
+    db.on('child_added', snap => {
+      console.log('child_added ', snap.val())
+      dbOnl.push(snap.val());
+      this.setState({
+        orderList: [
+          ...this.state.orderList,
+          snap.val()
+      ]
+      });
+    });
   }
 
   /* Clicked to search */
@@ -53,8 +78,11 @@ class Manager extends Component {
   /* When typing on search <input> */
   onChangeSearchInput = (event) => {
     const value = event.target.value;
+
     const searchedList = this.state.orderList.filter(item => {
-      return item.ID.indexOf(value) !== -1 || item.userID.indexOf(value) !== -1 ? item : ''; 
+      const ID = item.ID.toString();
+      const userID = item.userID.toString();
+      return ID.indexOf(value) !== -1 || userID.indexOf(value) !== -1 ? item : ''; 
     });
 
     this.setState({
@@ -72,40 +100,37 @@ class Manager extends Component {
 
   /* Restaurant completed the order */
   onCompleOrder = (itemID) => {
-    /* Sort searchedList when in Sorting mode */
-    if(this.state.isSorting === true && this.state.isSearching === true){
-        const changeIsDoneOrderList = this.state.searchedList.map((item) => {
-            if(item.ID === itemID){
-              item.isDone = true;
-              return item;
-            }
-            else return item;
-          });
-      
-        this.setState({
-            searchedList: changeIsDoneOrderList
-        });
-        this.onSortSearch();
+    /* Set isDone of order on firebase by index */
+    var indexDB;
+    var url = 'orderList/';
+    dbOnl.map((item, index) => {
+      if(item.ID === itemID){
+        indexDB = index;
+        item.isDone = true;
+      }
+      return 0;
+    });
+
+    url += indexDB + '/isDone';
+    firebase.database().ref(url).set(true);
+
+    /* Sort order when in sorting mode - in local */
+    const newOrderList = this.state.orderList.map((item) => {
+      if(item.ID === itemID){
+        item.isDone = true;
+      }
+      return item;
+    });
+
+    this.setState({
+      orderList: newOrderList
+    })
+
+    if(this.state.isSorting){
+      if(this.state.isSearching)
+        this.onSortSearch(); 
+      else this.onSortOrder();
     }
-    
-    else {
-        const changeIsDoneOrderList = this.state.orderList.map((item) => {
-            if(item.ID === itemID){
-              item.isDone = true;
-              return item;
-            }
-            else return item;
-          });
-      
-        this.setState({
-            orderList: changeIsDoneOrderList
-        });
-        
-        /* Sort orderList when not in Sorting mode */
-        if(this.state.isSorting === true && this.state.isSearching === false)
-            this.onSortOrder();
-    }
-    
   }
 
   onSortOrder = () => {
@@ -133,27 +158,31 @@ class Manager extends Component {
     Array.map(item => {
       if(item.isDone === true)
         return isDoneOrder.push(item);
-      else return sortedList.push(item);  /* Let not done order on top */
+      else return sortedList.push(item);  
     });
 
-    return sortedList.concat(isDoneOrder);
+    return sortedList.concat(isDoneOrder); /* Let not done order on top */
   }
 
   render(){
+
     const {isChoosing, isSearching, orderList, searchedList} = this.state;
     const list = isSearching ? searchedList : orderList;
-
-    const listOrder = list.map((order, index) => (
-      <Order
-        key={index}
-        ID= {order.ID} 
-        item= {order.item}
-        amount= {order.amount}
-        time= {order.time}
-        isDone= {order.isDone}
-        onComplete= {this.onCompleOrder}
-      />
-    ));
+    var listOrder;
+    
+    if(list){
+      listOrder = list.map((order, index) => (
+        <Order
+          key={index}
+          ID= {order.ID}
+          itemList={order.itemList}
+          time= {order.time}
+          isDone= {order.isDone}
+          userID= {order.userID}
+          onComplete= {this.onCompleOrder}
+        />
+      ));
+  }
 
     return(
       <div>

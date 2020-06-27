@@ -1,0 +1,103 @@
+.bg-turquoise {
+    background-color: #98c3e3;
+}
+
+.root {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding: 0px !important;
+    background-image: url('./../bg-01.jpg');
+    z-index: 1;
+}
+
+.root .heading {
+    position: absolute;
+    top: 0px;
+}
+
+.loginForm {
+    background-color: #FFF;
+    border-radius: 10px;
+    position: absolute;
+    height: 70%;
+    width: 80%;
+    margin-left: 10%;
+    top: 15%;
+    z-index: 2;
+}
+
+.loginForm::before {
+    content: '';
+    position: absolute;
+    border-radius: 10px;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #FFF;
+    z-index: -1;
+}
+
+.loginForm::after {
+    content: '';
+    position: absolute;
+    border-radius: 10px;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #FFF;
+    z-index: -2;
+    filter: blur(40px);
+}
+
+.loginForm::before,
+.loginForm::after {
+    background: linear-gradient(235deg, );
+}
+
+.loginForm .header {
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+}
+
+.loginForm .form-group {
+    padding: 0px 1em;
+    color: #000;
+}
+
+.loginForm label {
+    margin-top: 15px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.loginForm .btn {
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+    margin-left: 10%;
+    width: 80%;
+    border-radius: 25px;
+    background: linear-gradient(to left, #00dbde, #fc00ff);
+    transition: all 0.4s;
+}
+
+.errors {
+    margin-top: 40px;
+}
+
+.errors .alert {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 10px;
+}

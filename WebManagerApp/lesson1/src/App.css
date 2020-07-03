@@ -1,0 +1,11 @@
+.heading {
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.heading .navigation-heading {
+    width: 100%;
+    align-self: center;
+}

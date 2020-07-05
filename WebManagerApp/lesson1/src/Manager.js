@@ -3,6 +3,8 @@ import Header from './components/Header';
 import SelectRule from './components/SelectRule'
 import Order from './components/Order'
 import Search from './components/Search'
+import ShowReport from './components/ShowReport'
+
 import firebase from 'firebase/app'
 import firebaseConfig from './firebaseConfig'
 import './Manager.css';
@@ -12,15 +14,32 @@ import 'firebase/database'
 firebase.initializeApp(firebaseConfig);
 var dbOnl = [];
 
+/* Update data for new day */
+var schedule = require('node-schedule'); 
+schedule.scheduleJob('0 0 0 * * *', function(){
+  const Time = new Date();
+  const thisDay = (Time.getMonth() + 1).toString() + (Time.getDate() < 10 ? '0' + Time.getDate() : Time.getDate()).toString();
+  const url_nOrder = 'nOrder';
+  const url_orderList = 'orderList';
+  const url_dataByDate = 'dataByDate';
+  
+  firebase.database().ref(url_nOrder + '/nOrder').set(-1);
+  firebase.database().ref(url_nOrder + '/orderID').set(Number(thisDay + '000'));
+  firebase.database().ref(url_orderList).set([]);
+  firebase.database().ref(url_dataByDate + '/' + thisDay).set(dbOnl);
+});
+
 class Manager extends Component {
   constructor(){
     super();
     this.state = {
       isChoosing : 'order',
       isSearching: false,
-      isSorting: false,
+	    isSorting: false,
+	    showReport: false,
       orderList: [],
-      searchedList: []
+      searchedList: [],
+      itemListReport: []
     };
 
     this.onSearchButton = this.onSearchButton.bind(this);
@@ -33,7 +52,7 @@ class Manager extends Component {
 
   componentDidMount(){
     const db = firebase.database().ref().child('orderList');
-    
+
     db.on('value', snap => {
       //console.log('value', snap.val())
       if(snap.val()){
@@ -47,10 +66,17 @@ class Manager extends Component {
           this.onSortSearch(); 
         else this.onSortOrder();
       }
+
+      var newItemListReport = [];
+      for(const order of this.state.orderList){
+        for(const dish of order.itemList)
+          newItemListReport.push(dish);
+      }     
+      this.setState({itemListReport: newItemListReport});
     });
 
     db.on('child_added', snap => {
-      console.log('child_added ', snap.val())
+      //console.log('child_added ', snap.val())
       dbOnl.push(snap.val());
       this.setState({
         orderList: [
@@ -61,6 +87,7 @@ class Manager extends Component {
     });
   }
 
+/*				Show Order section				*/
   /* Clicked to search */
   onSearchButton = (event) => {
     this.setState({
@@ -165,10 +192,9 @@ class Manager extends Component {
   }
 
   render(){
-
+    var listOrder;
     const {isChoosing, isSearching, orderList, searchedList} = this.state;
     const list = isSearching ? searchedList : orderList;
-    var listOrder;
     
     if(list){
       listOrder = list.map((order, index) => (
@@ -176,13 +202,12 @@ class Manager extends Component {
           key={index}
           ID= {order.ID}
           itemList={order.itemList}
-          time= {order.time}
           isDone= {order.isDone}
           userID= {order.userID}
           onComplete= {this.onCompleOrder}
         />
       ));
-  }
+  	}
 
     return(
       <div>
@@ -199,6 +224,12 @@ class Manager extends Component {
           <div className='OrderList'>  
             {listOrder}
           </div>
+        }
+        {
+          isChoosing === 'report' &&
+          <ShowReport 
+            itemListReport= {this.state.itemListReport}
+            dbReport= {firebase.database().ref('/Report')}/>
         }
       </div>
     );

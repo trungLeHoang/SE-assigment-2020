@@ -1,0 +1,40 @@
+@keyframes blinkingColor{
+    0%		{ background-color: #000000;}
+    50%		{ background-color: #5c99ac;}
+    100%	{ background-color: #000000;}
+}
+
+@keyframes flyup {
+    from {top: 200px; background-color: #15161A;}
+    to {top: 88px;}
+}
+
+
+.showReport {
+    position: absolute;
+    top: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;    
+}
+
+.showReport .btn-report {
+    margin-top: 23vh;
+    color: #FFF ;
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: 3px solid #4f8a8b ;
+    transition: all 0.5s;
+}
+
+.showReport .btn-report:hover{
+    transform: translateY(-8px);
+    background-color: #8cc1c2;
+}
+
+.red {
+    color: crimson !important;
+    letter-spacing: 3px;
+}

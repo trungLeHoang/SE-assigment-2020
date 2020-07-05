@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 import './Home.css'
 
@@ -18,6 +19,13 @@ class Home extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.notLogged = this.notLogged.bind(this);
+    }
+
+    notLogged() {
+        var errors = ['Please Login !'];
+        this.setState({errors});
+        document.getElementById("inputUsername").focus();
     }
 
     onSubmit(event){
@@ -31,7 +39,7 @@ class Home extends Component {
         if(txtPass.length === 0)
             errors.push('Please enter your Password');
 
-        if(errors.length === 0)
+        if(errors.length === 0){
             for(let index = 0; index < authentication.length; index++) {
                 if(authentication[index].user === txtName){
                     if(authentication[index].pass !== txtPass){
@@ -44,8 +52,12 @@ class Home extends Component {
                     errors.push('Cannot found your Username');
                 }
             }
-
-        this.setState({ errors, isLogged: true });
+        }
+        this.setState({errors});
+        if(errors.length === 0){
+            this.setState({ isLogged: true });
+            window.location.href = '/manager';
+        }
     }
 
     onChange(event){
@@ -62,7 +74,12 @@ class Home extends Component {
             return <div className="alert alert-danger" key={index}>
             {err}
           </div>
-        })
+        });
+
+        var actWithLogged = this.state.isLogged ? 
+            <Link to='/manager' className="nav-link">Manager</Link>
+            : <p className="nav-link" onClick={this.notLogged}>Manager</p>
+
         return (
         <div className='root'>
             <div className='heading'>
@@ -75,10 +92,10 @@ class Home extends Component {
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item active">
-                                    <a className="nav-link" href="/order">Order <span className="sr-only">(current)</span></a>
+                                    <a className="nav-link" href="https://sfcs-f6a3c.web.app/">Order <span className="sr-only">(current)</span></a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/manager">Manager<span className="sr-only">(current)</span></a>
+                                    {actWithLogged}
                                 </li>
                             </ul>
                         </div>
@@ -91,10 +108,12 @@ class Home extends Component {
                 <form className="form-group" onSubmit={this.onSubmit}>
                     <label >Username</label>
                     <input 
+                        id='inputUsername'
                         type="text" 
                         className="form-control" 
                         name="txtName"
                         onChange={this.onChange}
+                        autoFocus
                         autoComplete='on'/>
                     <label>Password</label>
                     <input 

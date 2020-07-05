@@ -9,6 +9,11 @@
     to {top: 88px;}
 }
 
+.centering {
+    display: flex !important;
+    justify-content: center !important;
+}
+
 .contain {
     padding: 1.5em 1.5em 1em 1.5em; 
     display: flex;
@@ -16,6 +21,8 @@
     color: aliceblue;
     background-color: #15161A;
     border-bottom: 1px solid #CCC;
+    animation: blinkingColor 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .onGoing {

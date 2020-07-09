@@ -30,10 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GIDSignInDelegate{
         return true
     }
 
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
-      -> Bool {
-      return GIDSignIn.sharedInstance().handle(url)
-    }
+   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+       return GIDSignIn.sharedInstance().handle(url)
+   }
     
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -56,6 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GIDSignInDelegate{
             UserDefaults.standard.set(true, forKey: "status")
             NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
             print("user=" + (res?.user.email)!)
+            
+            Email = res?.user.email as! String
+            
+        }
+        
+        func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!){
+            
         }
     
     }

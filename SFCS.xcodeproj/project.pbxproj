@@ -18,6 +18,13 @@
 		EFD8A7F2248C9E6600DE60EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD8A7F0248C9E6600DE60EC /* LaunchScreen.storyboard */; };
 		EFD8A7FD248C9E6600DE60EC /* SFCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD8A7FC248C9E6600DE60EC /* SFCSTests.swift */; };
 		EFD8A808248C9E6600DE60EC /* SFCSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD8A807248C9E6600DE60EC /* SFCSUITests.swift */; };
+		EFDDFC7224AB8BFB002E6546 /* Mainscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7124AB8BFB002E6546 /* Mainscreen.swift */; };
+		EFDDFC7424AB8D99002E6546 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7324AB8D99002E6546 /* Menu.swift */; };
+		EFDDFC7824AB8FC7002E6546 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7724AB8FC7002E6546 /* Login.swift */; };
+		EFDDFC7A24AB9114002E6546 /* PickUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7924AB9114002E6546 /* PickUpScreen.swift */; };
+		EFDDFC7C24AB9619002E6546 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7B24AB9619002E6546 /* CartView.swift */; };
+		EFDDFC7E24ABACE1002E6546 /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7D24ABACE1002E6546 /* getData.swift */; };
+		EFDDFC8024ABAD3C002E6546 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDFC7F24ABAD3C002E6546 /* data.swift */; };
 		FC1D438BABC34B39B16EDA0C /* Pods_SFCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC733ED8A45B8C0E2AFD017F /* Pods_SFCS.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +70,13 @@
 		EFD8A803248C9E6600DE60EC /* SFCSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFCSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD8A807248C9E6600DE60EC /* SFCSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFCSUITests.swift; sourceTree = "<group>"; };
 		EFD8A809248C9E6600DE60EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFDDFC7124AB8BFB002E6546 /* Mainscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mainscreen.swift; sourceTree = "<group>"; };
+		EFDDFC7324AB8D99002E6546 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		EFDDFC7724AB8FC7002E6546 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EFDDFC7924AB9114002E6546 /* PickUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpScreen.swift; sourceTree = "<group>"; };
+		EFDDFC7B24AB9619002E6546 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		EFDDFC7D24ABACE1002E6546 /* getData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
+		EFDDFC7F24ABAD3C002E6546 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +155,8 @@
 		EFD8A7E4248C9E6500DE60EC /* SFCS */ = {
 			isa = PBXGroup;
 			children = (
+				EFDDFC7624AB8EB9002E6546 /* Back-end */,
+				EFDDFC7024AB8B62002E6546 /* View */,
 				EF1FE0B8248FEE9C0031A88E /* GoogleService-Info.plist */,
 				EFD8A7E5248C9E6500DE60EC /* AppDelegate.swift */,
 				EFD8A7E7248C9E6500DE60EC /* SceneDelegate.swift */,
@@ -177,6 +193,27 @@
 				EFD8A809248C9E6600DE60EC /* Info.plist */,
 			);
 			path = SFCSUITests;
+			sourceTree = "<group>";
+		};
+		EFDDFC7024AB8B62002E6546 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFDDFC7124AB8BFB002E6546 /* Mainscreen.swift */,
+				EFDDFC7324AB8D99002E6546 /* Menu.swift */,
+				EFDDFC7724AB8FC7002E6546 /* Login.swift */,
+				EFDDFC7924AB9114002E6546 /* PickUpScreen.swift */,
+				EFDDFC7B24AB9619002E6546 /* CartView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EFDDFC7624AB8EB9002E6546 /* Back-end */ = {
+			isa = PBXGroup;
+			children = (
+				EFDDFC7D24ABACE1002E6546 /* getData.swift */,
+				EFDDFC7F24ABAD3C002E6546 /* data.swift */,
+			);
+			path = "Back-end";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,9 +492,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFDDFC7224AB8BFB002E6546 /* Mainscreen.swift in Sources */,
+				EFDDFC7824AB8FC7002E6546 /* Login.swift in Sources */,
 				EFD8A7E6248C9E6500DE60EC /* AppDelegate.swift in Sources */,
+				EFDDFC8024ABAD3C002E6546 /* data.swift in Sources */,
+				EFDDFC7E24ABACE1002E6546 /* getData.swift in Sources */,
+				EFDDFC7A24AB9114002E6546 /* PickUpScreen.swift in Sources */,
 				EFD8A7E8248C9E6500DE60EC /* SceneDelegate.swift in Sources */,
 				EFD8A7EA248C9E6500DE60EC /* ContentView.swift in Sources */,
+				EFDDFC7C24AB9619002E6546 /* CartView.swift in Sources */,
+				EFDDFC7424AB8D99002E6546 /* Menu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

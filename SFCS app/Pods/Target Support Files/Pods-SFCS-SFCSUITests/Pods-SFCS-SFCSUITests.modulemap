@@ -1,0 +1,6 @@
+framework module Pods_SFCS_SFCSUITests {
+  umbrella header "Pods-SFCS-SFCSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 import './Home.css'
 
@@ -13,13 +14,16 @@ class Home extends Component {
                 { user: 'admin', pass: 'admin' },
                 { user: '0911421350 ', pass: 'admin' },
                 { user: 'sang', pass: 'admin' }],
-            isLogged: false,
             errors : []
         }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.notLogged = this.notLogged.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({ isLogged: this.props.isLogged});
     }
 
     notLogged() {
@@ -53,10 +57,11 @@ class Home extends Component {
                 }
             }
         }
+
         this.setState({errors});
         if(errors.length === 0){
+            this.props.onLogin(txtName);
             this.setState({ isLogged: true });
-            window.location.href = '/manager';
         }
     }
 
@@ -76,7 +81,7 @@ class Home extends Component {
           </div>
         });
 
-        var actWithLogged = this.state.isLogged ? 
+        var actWithLogged = Cookies.get('user') ? 
             <Link to='/manager' className="nav-link">Manager</Link>
             : <p className="nav-link" onClick={this.notLogged}>Manager</p>
 

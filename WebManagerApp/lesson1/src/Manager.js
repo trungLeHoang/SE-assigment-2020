@@ -50,7 +50,7 @@ class Manager extends Component {
     this.onSortOrder = this.onSortOrder.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount(){    
     const db = firebase.database().ref().child('orderList');
 
     db.on('value', snap => {
@@ -126,7 +126,7 @@ class Manager extends Component {
   }
 
   /* Restaurant completed the order */
-  onCompleOrder = (itemID) => {
+  onCompleOrder = (itemID) => { 
     /* Set isDone of order on firebase by index */
     var indexDB;
     var url = 'orderList/';

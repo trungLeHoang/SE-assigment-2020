@@ -1,0 +1,230 @@
+{
+  "nOrder" : {
+    "nOrder" : 16,
+    "orderID" : 16
+  },
+  "orderList" : [ {
+    "ID" : 0,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "France Flan",
+      "price" : 25000,
+      "quantity" : 1
+    }, {
+      "name" : "Fresh Milk",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 1,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "White Rice",
+      "price" : 20000,
+      "quantity" : 1
+    }, {
+      "name" : "Burder",
+      "price" : 39000,
+      "quantity" : 1
+    }, {
+      "name" : "Fired Potatoe",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 2,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "Fried Potato",
+      "price" : 20000,
+      "quantity" : 1
+    }, {
+      "name" : "Coffee",
+      "price" : 30000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 3,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "White Rice",
+      "price" : 20000,
+      "quantity" : 1
+    }, {
+      "name" : "Burder",
+      "price" : 39000,
+      "quantity" : 1
+    }, {
+      "name" : "Fired Potatoe",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 4,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "White Rice",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 5,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "White Rice",
+      "price" : 20000,
+      "quantity" : 2
+    }, {
+      "name" : "Fired Potatoe",
+      "price" : 20000,
+      "quantity" : 2
+    } ],
+    "paymentType" : "Cash",
+    "userID" : "quan260402@gmail.com"
+  }, {
+    "ID" : 6,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "France Flan",
+      "price" : 25000,
+      "quantity" : 2
+    } ],
+    "paymentType" : "Cash",
+    "userID" : "quan260402@gmail.com"
+  }, {
+    "ID" : 7,
+    "date" : "Jul 1, 2020 at 8:51:46 PM",
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "Fired Potatoe",
+      "price" : 20000,
+      "quantity" : 2
+    } ],
+    "paymentType" : "Apple Pay",
+    "userID" : "quan260402@gmail.com"
+  }, {
+    "ID" : 8,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "Fried Potato",
+      "price" : 20000,
+      "quantity" : 1
+    }, {
+      "name" : "France Flan",
+      "price" : 25000,
+      "quantity" : 1
+    }, {
+      "name" : "Fresh Milk",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 9,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "White Rice",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 10,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "Fried Potato",
+      "price" : 20000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 11,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "Coffee",
+      "price" : 30000,
+      "quantity" : 1
+    }, {
+      "name" : "Green tea",
+      "price" : 10000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 12,
+    "isDone" : true,
+    "itemList" : [ {
+      "name" : "Hamburger",
+      "price" : 30000,
+      "quantity" : 1
+    }, {
+      "name" : "France Flan",
+      "price" : 25000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 13,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "Green tea",
+      "price" : 10000,
+      "quantity" : 1
+    }, {
+      "name" : "France Flan",
+      "price" : 25000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 14,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "White Rice",
+      "price" : 20000,
+      "quantity" : 10
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 15,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "Green tea",
+      "price" : 10000,
+      "quantity" : 9
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  }, {
+    "ID" : 16,
+    "isDone" : false,
+    "itemList" : [ {
+      "name" : "Fresh Milk",
+      "price" : 20000,
+      "quantity" : 1
+    }, {
+      "name" : "Bubble milk tea",
+      "price" : 45000,
+      "quantity" : 1
+    } ],
+    "paymentType" : "",
+    "userID" : ""
+  } ]
+}

@@ -90,10 +90,10 @@
 						</div>
 						<div className='right'>
 						{
-							isDone === false && <p>Making</p>
+							isDone === false && <p className='red'>Making</p>
 						}
 						{
-							isDone && <p>Completed</p>
+							isDone && <p className='turquoise'>Completed</p>
 						}
 						</div>
 					</div>

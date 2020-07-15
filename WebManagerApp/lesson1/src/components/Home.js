@@ -61,7 +61,7 @@ class Home extends Component {
         this.setState({errors});
         if(errors.length === 0){
             this.props.onLogin(txtName);
-            this.setState({ isLogged: true });
+            this.setState({ isLogged: true, txtName});
         }
     }
 
@@ -90,7 +90,7 @@ class Home extends Component {
             <div className='heading'>
                 <div className='navigation-heading'>
                     <nav className="navbar navbar-expand-lg navbar-light bg-turquoise">
-                        <a className="navbar-brand" href='/'>HomePage</a>
+                        <a className="navbar-brand" href='/'>SFCF Management</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -107,35 +107,46 @@ class Home extends Component {
                     </nav>
                 </div>
             </div>
-            <div className='loginForm'>
-                <div className='header'>Login</div>
-                
-                <form className="form-group" onSubmit={this.onSubmit}>
-                    <label >Username</label>
-                    <input 
-                        id='inputUsername'
-                        type="text" 
-                        className="form-control" 
-                        name="txtName"
-                        onChange={this.onChange}
-                        autoFocus
-                        autoComplete='on'/>
-                    <label>Password</label>
-                    <input 
-                        type="password" 
-                        className="form-control" 
-                        name="txtPass" 
-                        autoComplete='on'
-                        onChange={this.onChange}/>
+            {
+                this.state.isLogged === false && 
+                <div className='loginForm'>
+                    <div className='header'>Login</div>
+                    
+                    <form className="form-group" onSubmit={this.onSubmit}>
+                        <label >Username</label>
+                        <input 
+                            id='inputUsername'
+                            type="text" 
+                            className="form-control" 
+                            name="txtName"
+                            onChange={this.onChange}
+                            autoFocus
+                            autoComplete='on'/>
+                        <label>Password</label>
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            name="txtPass" 
+                            autoComplete='on'
+                            onChange={this.onChange}/>
 
-                    <button type="submit" className="btn">Login</button>
-                </form>
-                {
-                    this.state.errors.length > 0 && <div className='errors'> {listError} </div>
-                }  
-            </div>
+                        <button type="submit" className="btn">Login</button>
+                    </form>
+                    {
+                        this.state.errors.length > 0 && <div className='errors'> {listError} </div>
+                    }  
+                </div>
+            }
+            {
+                this.state.isLogged &&
+                <div className='welcome_slow w-100'>
+                    <p>Welcome,</p>
+                    <p>Manager</p>
+                </div>
+            }
         </div>
         );
+        
     }
 }
 

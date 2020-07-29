@@ -21,69 +21,17 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-
+    <link rel="stylesheet" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
-
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>0</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Vietnamese</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> bachkhoaSFCS@hcmut.edu.vn</li>
-                <li>Free Shipping for all Order of 100K VND</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -94,7 +42,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> bachkhoaSFCS@hcmut.edu.vn</li>
-                                <li>Free Shipping for all Order of 100K VND</li>
+
                             </ul>
                         </div>
                     </div>
@@ -111,12 +59,8 @@
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Vietnamese</a></li>
                                     <li><a href="#">English</a></li>
                                 </ul>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
                             </div>
                         </div>
                     </div>
@@ -134,8 +78,6 @@
                 <nav class="header__menu">
                     <ul class="navbar-nav ml-auto">
                         <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./contact.html">Shop</a></li>
-                        <li><a href="./contact.html">Account</a></li>
                         <li><a href="./shoping-cart.html">Cart</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                     </ul>
@@ -143,9 +85,6 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-heart"></i> <span>0</span></a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span id="cartNumber">0</span></a>
                     </li>
@@ -156,7 +95,7 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="hero hero-normal">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -166,14 +105,10 @@
                             <span>All departments</span>
                         </div>
                         <ul>
+                            <li><a href="#">Rice</a></li>
                             <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Plain Boiled Rice</a></li>
-                            <li><a href="#">Fresh Fruits</a></li>
-                            <li><a href="#">Milk</a></li>
-                            <li><a href="#">Soft Drink</a></li>
+                            <li><a href="#">Drink</a></li>
                             <li><a href="#">Dessert</a></li>
-                            <li><a href="#">Coffee</a></li>
-                            <li><a href="#">Snacks</a></li>
                         </ul>
                     </div>
                 </div>
@@ -181,30 +116,21 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do you need?">
+                                <input autofocus type="text" class="form-control" placeholder="What do you need?" autocomplete="off" id="search">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
+                            <ul class="list-group" id="list">
+
+                            </ul>
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+84 333 446 778</h5>
+                                <h5>+84 1800 0000</h5>
                                 <span>Open 7h-21h everyday</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-                        <div class="hero__text">
-                            <span>SMART FOOD COURT SYSTEM</span>
-                            <h2>Bach Khoa <br />Food Court</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>
                 </div>
@@ -213,41 +139,23 @@
     </section>
     <!-- Hero Section End -->
 
-    <!-- Categories Section Begin -->
-    <section class="categories">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
-                <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                            <h5><a href="#">Drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                            <h5><a href="#">Dried Fruit Snack</a></h5>
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Bach Khoa Smart Food Court</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">Home</a>
+                            <span>Bach Khoa SFC</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Categories Section End -->
+    <!-- Breadcrumb Section End -->
 
     <!-- Featured Section Begin -->
     <section class="featured spad">
@@ -260,21 +168,21 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
+                            <li data-filter=".rice">Rice</li>
                             <li data-filter=".fastfood">Fastfood</li>
+                            <li data-filter=".drink">Drink</li>
+                            <li data-filter=".dessert">Dessert</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix rice fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/whiterice.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-white-rice.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -284,12 +192,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/friedpotato.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-fried-potato.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -299,12 +207,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix dessert fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/franceflan.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-france-flan.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -314,12 +222,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix drink">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/freshmilk.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-fresh-milk.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -329,12 +237,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix drink">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/coffee.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-coffee.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -344,12 +252,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix drink">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/greentea.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-green-tea.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -359,12 +267,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix drink">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/bubblemilktea.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-bubble-milk-tea.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -374,12 +282,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/product/hamburger.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#/"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#/"><i class="fa fa-retweet"></i></a></li>
+                                
+                                <li><a href="/product-hamburger.html"><i class="fa fa-external-link"></i></a></li>
                                 <li><a href="#/" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -422,7 +330,7 @@
                         <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-bubble-milk-tea.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/bubblemilktea.jpg" alt="">
                                     </div>
@@ -431,7 +339,7 @@
                                         <span>45.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-coffee.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/coffee.jpg" alt="">
                                     </div>
@@ -440,7 +348,7 @@
                                         <span>30.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-france-flan.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/franceflan.jpg" alt="">
                                     </div>
@@ -451,7 +359,7 @@
                                 </a>
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-hamburger.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/hamburger.jpg" alt="">
                                     </div>
@@ -460,7 +368,7 @@
                                         <span>30.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-green-tea.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/greentea.jpg" alt="">
                                     </div>
@@ -469,7 +377,7 @@
                                         <span>10.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-fresh-milk.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/freshmilk.jpg" alt="">
                                     </div>
@@ -487,7 +395,7 @@
                         <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-bubble-milk-tea.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/bubblemilktea.jpg" alt="">
                                     </div>
@@ -496,7 +404,7 @@
                                         <span>45.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-coffee.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/coffee.jpg" alt="">
                                     </div>
@@ -505,7 +413,7 @@
                                         <span>30.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-fresh-milk.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/freshmilk.jpg" alt="">
                                     </div>
@@ -516,7 +424,7 @@
                                 </a>
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-white-rice.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/whiterice.jpg" alt="">
                                     </div>
@@ -525,7 +433,7 @@
                                         <span>20.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-hamburger.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/hamburger.jpg" alt="">
                                     </div>
@@ -534,7 +442,7 @@
                                         <span>30.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-france-flan.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/franceflan.jpg" alt="">
                                     </div>
@@ -552,7 +460,7 @@
                         <h4>Review Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-bubble-milk-tea.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/bubblemilktea.jpg" alt="">
                                     </div>
@@ -561,7 +469,7 @@
                                         <span>45.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-coffee.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/coffee.jpg" alt="">
                                     </div>
@@ -570,7 +478,7 @@
                                         <span>30.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-white-rice.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/whiterice.jpg" alt="">
                                     </div>
@@ -581,7 +489,7 @@
                                 </a>
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-france-flan.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/franceflan.jpg" alt="">
                                     </div>
@@ -590,7 +498,7 @@
                                         <span>25.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-coffee.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/coffee.jpg" alt="">
                                     </div>
@@ -599,7 +507,7 @@
                                         <span>30.000₫</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
+                                <a href="/product-green-tea.html" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="img/latest-product/greentea.jpg" alt="">
                                     </div>
@@ -617,66 +525,6 @@
     </section>
     <!-- Latest Product Section End -->
 
-    <!-- Blog Section Begin -->
-    <section class="from-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title from-blog__title">
-                        <h2>From The Blog</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Blog Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">
@@ -762,7 +610,6 @@
             https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-analytics.js"></script>
 	<script src="js/store.js"></script>
-    
     
 
 </body>

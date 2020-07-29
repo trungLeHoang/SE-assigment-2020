@@ -75,6 +75,68 @@ let products = [
 		inCart: 0
 	}
 ];
+const list = document.getElementById('list');
+
+function setList(group){
+	clearList();
+	for (const product of group){
+		const item = document.createElement('li');
+		item.classList.add('list-group-item');
+		const text = document.createTextNode(product.name);
+		item.appendChild(text);
+		list.appendChild(item);
+	}
+	if (group.length === 0){
+		setNoResults();
+	}
+}
+
+function clearList(){
+	while(list.firstChild){
+		list.removeChild(list.firstChild);
+	}
+}
+
+function setNoResults(){
+	const item = document.createElement('li');
+	item.classList.add('list-group-item');
+	const text = document.createTextNode('No results found');
+	item.appendChild(text);
+	list.appendChild(item);
+}
+
+function getRelevancy(value, searchTerm){
+	if (value === searchTerm){
+		return 2;
+	} else if (value.startsWith(searchTerm)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+const searchInput = document.getElementById('search');
+
+searchInput.addEventListener('input', (event) =>{
+	console.log('input');
+	let value = event.target.value;
+	if (value && value.trim().length > 0){
+		value = value.trim().toLowerCase();
+		setList(products.filter(product =>{
+			return product.name.includes(value);
+		}).sort((productA, productB) => {
+			return getRelevancy(productB.name,value) - getRelevancy(productA.name,value);
+		}));
+	} else {
+		clearList();
+	}
+});
+
+
+
+
+
+
 
 
 
@@ -102,13 +164,15 @@ function priceText(number){
 
 for (let i = 0; i < carts.length; i++){
 	carts[i].addEventListener('click', () =>{
-		cartNumbers(products[i]);
-		totalCost(products[i]);
-		alert("Add product to cart successfully!")
+		addToCart(i);
 	})
 }
 
-
+function addToCart(index){
+	cartNumbers(products[index]);
+	totalCost(products[index]);
+	alert("Add product to cart successfully!");
+}
 
 function onLoadCartNumbers(){
 	let productNumbers = localStorage.getItem('cartNumbers');
@@ -280,3 +344,4 @@ function removeAll(){
 }
 onLoadCartNumbers();
 displayCart();
+

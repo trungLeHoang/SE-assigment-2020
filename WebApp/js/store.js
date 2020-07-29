@@ -75,6 +75,12 @@ let products = [
 		inCart: 0
 	}
 ];
+
+function myFunction() {
+	var x = document.getElementById("snackbar");
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
 const list = document.getElementById('list');
 
 function setList(group){
@@ -90,54 +96,6 @@ function setList(group){
 		setNoResults();
 	}
 }
-
-function clearList(){
-	while(list.firstChild){
-		list.removeChild(list.firstChild);
-	}
-}
-
-function setNoResults(){
-	const item = document.createElement('li');
-	item.classList.add('list-group-item');
-	const text = document.createTextNode('No results found');
-	item.appendChild(text);
-	list.appendChild(item);
-}
-
-function getRelevancy(value, searchTerm){
-	if (value === searchTerm){
-		return 2;
-	} else if (value.startsWith(searchTerm)) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
-
-const searchInput = document.getElementById('search');
-
-searchInput.addEventListener('input', (event) =>{
-	console.log('input');
-	let value = event.target.value;
-	if (value && value.trim().length > 0){
-		value = value.trim().toLowerCase();
-		setList(products.filter(product =>{
-			return product.name.includes(value);
-		}).sort((productA, productB) => {
-			return getRelevancy(productB.name,value) - getRelevancy(productA.name,value);
-		}));
-	} else {
-		clearList();
-	}
-});
-
-
-
-
-
-
-
 
 
 function priceText(number){
@@ -171,7 +129,8 @@ for (let i = 0; i < carts.length; i++){
 function addToCart(index){
 	cartNumbers(products[index]);
 	totalCost(products[index]);
-	alert("Add product to cart successfully!");
+	//alert("Add product to cart successfully!");
+	myFunction();
 }
 
 function onLoadCartNumbers(){

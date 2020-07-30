@@ -1,3 +1,28 @@
+@keyframes slow {
+    from {
+        max-width: 0rem;
+    }
+    to {
+        max-width: 100%;
+    }
+}
+
+.welcome_slow {
+    vertical-align: bottom;
+    overflow: hidden;
+    animation: slow 2s ease forwards;
+    position: absolute;
+    font-size: 2.5rem;
+    top: 40%;
+    z-index: 2;
+}
+
+.welcome_slow p {
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+}
+
 .bg-turquoise {
     background-color: #98c3e3;
 }
@@ -7,7 +32,9 @@
     width: 100%;
     position: absolute;
     padding: 0px !important;
-    background-image: url('./../bg-01.jpg');
+    background: url('./../bg-01.jpg') no-repeat;
+    
+    background-size: 100% 100%;
     z-index: 1;
 }
 
@@ -105,4 +132,12 @@
     display: flex;
     justify-content: center;
     margin: 1rem 10px;
+}
+
+.red {
+    color: red;
+}
+
+.turquoise {
+    color: #00cbff;
 }

@@ -11,6 +11,10 @@ class Header extends Component {
     this.props.onSorted();
   }
 
+  onViewOlderOrder = () => {
+    this.props.onViewOlderOrder();
+  }  
+
   render(){
     return(
         <div className='heading'>
@@ -27,11 +31,16 @@ class Header extends Component {
                 </button>
                 <button 
                   className="dropdown-item"
-                  name='search'
+                  name='sort'
                   onClick={this.onSorted}
                   >Sorted Order
                 </button>
-                <button className="dropdown-item disabled" href="#">Disabled action</button>
+                <button 
+                  className="dropdown-item"
+                  name='older'
+                  onClick={this.onViewOlderOrder}
+                  >Order By Date
+                </button>
               </div>
             </div>
             <span className='span'>Order</span>

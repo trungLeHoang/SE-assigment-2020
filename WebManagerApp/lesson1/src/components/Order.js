@@ -32,9 +32,9 @@
 	}
 
 	render(){
-		const {ID, userID, itemList, isDone} = this.props;
-		
+		const {ID, userID, itemList, isDone, date, paymentType} = this.props;
 		const {showOrder} = this.state;
+		
 		var numItem = 0, totalPrice = 0, listDishes;
 		if(itemList){
 			/* Find out number of items and amount, gain item list */
@@ -50,10 +50,16 @@
 			});
 		}
 		
-		/* create pickup tiem */
-		const Time = new Date();
-		const HMSeconds = (Time.getHours() < 10 ? '0' + Time.getHours() : Time.getHours()).toString() 
-		+ ':' + (Time.getMinutes() < 10 ? '0' + Time.getMinutes() : Time.getMinutes()).toString()
+		// get date time pickup
+		const datePickup = date.slice(0, date.indexOf(':') - 2).trim()
+		var timePickup = date.slice(date.indexOf(':') - 2, -3)
+		timePickup = timePickup.trim()
+		if(timePickup[1] === ':')
+			timePickup = '0' + timePickup
+		if(timePickup[4] === ':')
+			timePickup = timePickup.slice(0, 3) + '0' + timePickup.slice(3, -1)
+		if(timePickup.length === 7)
+			timePickup = timePickup.slice(0, 6) + '0' + timePickup[6]
 
 		return(
 		<div>
@@ -68,7 +74,7 @@
 					</div>
 					<div className='right-component'>
 						<p className='pickup'>PICK UP</p>
-						<p className='time'>{HMSeconds}</p>   
+						<p className='time'>{timePickup.slice(0, 5)}</p>   
 					</div>     
 				</div>
 				}
@@ -85,15 +91,15 @@
 
 					<div className='user-info'>
 						<div className='left'>
-						<p>User: {userID}</p>
-						<p>Date: {HMSeconds}</p>
+						<p>User: {userID.length === 0 ? 'Touch Screen' : userID}</p>
+						<p>Date: {datePickup + ' ' + timePickup}</p>
 						</div>
 						<div className='right'>
 						{
-							isDone === false && <p>Making</p>
+							isDone === false && <p className='red'>Making</p>
 						}
 						{
-							isDone && <p>Completed</p>
+							isDone && <p className='turquoise'>Completed</p>
 						}
 						</div>
 					</div>

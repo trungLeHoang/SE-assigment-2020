@@ -44,6 +44,8 @@ class ShowReport extends Component {
 		var shortenListReport = [];
 		var newList = JSON.parse(JSON.stringify(this.props.itemListReport));
 		
+		console.log(':', this.props.itemListReport)
+
 		for(var i = 0; i < newList.length; i++){
 		const item = newList[i];
 		const index = shortenListReport.findIndex(ele => ele.name === item.name);
@@ -71,18 +73,19 @@ class ShowReport extends Component {
 
 	onShowReport = () => {
 		var listReportJSX = [];
+		var countReport = 0;
 		const {listReport} = this.state;
 		
-		Object.keys(listReport).map((date, i1) => {
+		Object.keys(listReport).map((date) => {
 			const listDate = listReport[date];
 
-			Object.keys(listDate).map((time, i2) => {
+			Object.keys(listDate).map((time) => {
 				const timeColon = time.substr(0,2) + ':' + time.substr(2,2) + ':' + time.substr(4,2);
 				
 				const orderList = listDate[time];
 					listReportJSX = [
 						<Report 
-							key={10*i1 + i2}
+							key={countReport++}
 							time={timeColon}
 							date={date}
 							itemList={orderList}

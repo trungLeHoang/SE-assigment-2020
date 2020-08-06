@@ -5,14 +5,15 @@
 //  Created by Đặng Nhật Quân on 7/1/20.
 //  Copyright © 2020 Đặng Nhật Quân. All rights reserved.
 //
-
+import TensorFlowLite
+import PythonKit
 import SwiftUI
 import Firebase
 import GoogleSignIn
 import FirebaseFirestore
 import FirebaseCore
 import SDWebImageSwiftUI
-
+import MomoiOSSwiftSdk
 
 class getCartData : ObservableObject{
     
@@ -60,8 +61,6 @@ class getCartData : ObservableObject{
             }
         }
     }
-    
-   
 }
 
 class getCategoriesData : ObservableObject{
@@ -95,7 +94,6 @@ class getCategoriesData : ObservableObject{
     }
 }
 
-
 func getTime()-> String {
     
     let currentTime = Date()
@@ -107,43 +105,38 @@ func getTime()-> String {
     let timeString = formatter.string(from: currentTime)
     
     return timeString
-    
-    
 }
 
 func getnOrder(){
                     
-                    var ref: DatabaseReference!
+    var ref: DatabaseReference!
                     
-                    ref = Database.database().reference()
+    ref = Database.database().reference()
                     
-                    ref.child("nOrder").observeSingleEvent(of: .value, with: { (snapshot) in
+    ref.child("nOrder").observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                        let value = snapshot.value as? NSDictionary
-                        
-                        nOrder = value!["nOrder"] as! Int
-                        OrderID = value!["orderID"] as! Int
-                        print(nOrder)
-                        print(OrderID)
-                    // ...
-                    }) { (error) in
-                        print(error.localizedDescription)
-                    }
+        let value = snapshot.value as? NSDictionary
                     
-                    
-                    
-                }
+        nOrder = value!["nOrder"] as! Int
+        OrderID = value!["orderID"] as! Int
+        print(nOrder)
+        print(OrderID)
+                
+    }) { (error) in
+        print(error.localizedDescription)
+    }
+}
 
 func addOrder(cartdata: [cart]){
-     getnOrder()
+    getnOrder()
+   
     var STT = 0
     var ref: DatabaseReference!
-    
     ref = Database.database().reference().child("orderList").child(String(nOrder+1))
     
     let Order = [
         "ID" : OrderID+1,
-        "userID" : userEmail,
+        "userID" : UserDefaults.standard.string(forKey: "userEmail"),
         "isDone" : false,
         "paymentType": paymentType,
         "date" : getTime(),
@@ -153,60 +146,83 @@ func addOrder(cartdata: [cart]){
     
     ref.setValue(Order)
     
-   ref=Database.database().reference().child("orderList").child(String(nOrder)).child("itemList")
+    ref=Database.database().reference().child("orderList").child(String(nOrder)).child("itemList")
                  
-                 
-          for i in cartdata {
+    for i in cartdata {
                      
-              ref=Database.database().reference().child("orderList").child(String(nOrder+1)).child("itemList").child(String(STT))
+        ref=Database.database().reference().child("orderList").child(String(nOrder+1)).child("itemList").child(String(STT))
                      
-              let Item = [
-                         "name" : i.name,
-                         "quantity" : i.quantity,
-                         "price" : i.price
-                      
-              ] as [String:Any]
+        let Item = [
+            "name" : i.name,
+            "quantity" : i.quantity,
+            "price" : i.price
+        ] as [String:Any]
               
-              ref.setValue(Item)
+        ref.setValue(Item)
           
-        
         STT += 1
-        
     }
- 
-     ref = Database.database().reference().child("nOrder")
+    
+    ref=Database.database().reference().child("nOrder")
+    
     let n = [
          "nOrder" : nOrder+1,
          "orderID" : OrderID+1
      ] as [String:Any]
                             
-     ref.setValue(n)
- 
+    ref.setValue(n)
     
-               
+     
+
 }
 
 func getStatus(){
    
     var ref: DatabaseReference!
                   
-                  ref = Database.database().reference()
+    ref = Database.database().reference()
                   
     ref.child("orderList").child(String(UserDefaults.standard.integer(forKey: "currentnOrder"))).observeSingleEvent(of: .value, with: { (snapshot) in
                   
-                      let value = snapshot.value as? NSDictionary
+        let value = snapshot.value as? NSDictionary
                       
-                      status = value!["status"] as! String
+        status = value!["status"] as! String
                      
-                        print(haveOrder)
-                        
-                  // ...
-                  }) { (error) in
-                      print(error.localizedDescription)
-                  }
+        print(haveOrder)
+        
+    }) { (error) in
+        print(error.localizedDescription)
+    }
        
 }
 
 func isLoggedIn() -> Bool {
     return UserDefaults.standard.bool(forKey: "isLoggedIn")
 }
+
+func total(cartdata: [cart]) -> Int{
+
+    var sum = 0
+    
+    for i in cartdata {
+            sum += i.quantity.intValue*i.price.intValue
+    }
+
+    nTotal = sum
+
+    return sum
+}
+
+func momoPayment(){
+    
+    guard let url = URL(string: "https://test-payment.momo.vn/qr/index.php?fbclid=IwAR3KDzZLCSLpFKHX0qIYoUzpV48NdewJ1ZMs_XHm7g54k_DVd5Fn_JFgcm8") else { return }
+    UIApplication.shared.open(url)
+    
+    
+}
+
+
+
+
+
+

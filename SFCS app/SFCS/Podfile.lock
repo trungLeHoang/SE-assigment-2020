@@ -355,6 +355,7 @@ PODS:
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
   - leveldb-library (1.22)
+  - MomoiOSSwiftSdk (2.1.1)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -371,6 +372,13 @@ PODS:
   - SDWebImage/Core (5.8.1)
   - SDWebImageSwiftUI (1.5.0):
     - SDWebImage (~> 5.7)
+  - TensorFlowLiteC (2.3.0):
+    - TensorFlowLiteC/Core (= 2.3.0)
+  - TensorFlowLiteC/Core (2.3.0)
+  - TensorFlowLiteSwift (2.3.0):
+    - TensorFlowLiteSwift/Core (= 2.3.0)
+  - TensorFlowLiteSwift/Core (2.3.0):
+    - TensorFlowLiteC (= 2.3.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -378,8 +386,10 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - GoogleSignIn
+  - MomoiOSSwiftSdk (from `https://github.com/momodevelopment/MomoiOSSwiftSdk.git`, branch `master`)
   - RealmSwift
   - SDWebImageSwiftUI
+  - TensorFlowLiteSwift
 
 SPEC REPOS:
   trunk:
@@ -412,6 +422,20 @@ SPEC REPOS:
     - RealmSwift
     - SDWebImage
     - SDWebImageSwiftUI
+    - TensorFlowLiteC
+    - TensorFlowLiteSwift
+
+EXTERNAL SOURCES:
+  MomoiOSSwiftSdk:
+    :branch: master
+    :git: https://github.com/momodevelopment/MomoiOSSwiftSdk.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  MomoiOSSwiftSdk:
+    :commit: 3f3b2f930b7507c6730eaf1b45bbd5f3506cf9cd
+    :git: https://github.com/momodevelopment/MomoiOSSwiftSdk.git
+    :submodules: true
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -437,13 +461,16 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MomoiOSSwiftSdk: 12088f0e307a537c199f8301c56d81925687ccb5
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   SDWebImageSwiftUI: 43687ffe232ddd33fe0659498b7ca9884fdd6b35
+  TensorFlowLiteC: 51f50caf5777f740a70e2c1a5dbdc149e7aeb50b
+  TensorFlowLiteSwift: fb152cc1eec36b25b03a23c07f5d58113170af58
 
-PODFILE CHECKSUM: 4519f8350d22d22adcfe42423717eb47925e79d0
+PODFILE CHECKSUM: d0d5ec092f165189907e780e9b791892eb104bd9
 
 COCOAPODS: 1.9.3

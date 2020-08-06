@@ -1,4 +1,5 @@
 import SwiftUI
+
 import Firebase
 import GoogleSignIn
 import FirebaseFirestore
@@ -6,15 +7,11 @@ import FirebaseCore
 import SDWebImageSwiftUI
 
 //UI
-
 struct ContentView: View {
-    
    
     var body: some View {
         
-        
-        
-      Home()
+        Home()
       
     }
 }
@@ -134,19 +131,10 @@ struct Home : View {
                 }
             }
         }
-        
     }
-    
- 
 }
 
-
-
-// orderView -> cardView -> Listt -> Carousel -> Mainscreen
-
+//orderView -> cardView -> Listt -> Carousel -> Mainscreen
 
 // orderView -> button -> foodmenu
-
-
-
 

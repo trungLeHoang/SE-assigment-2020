@@ -21,8 +21,12 @@ struct Menu : View {
     @Binding var size : CGFloat
     @Binding var cart : Bool
     @Binding var account : Bool
-    
     @State var checkout = false
+    @Binding var alert : Bool
+    @Binding var error : String
+    @State var aboutus = false
+    @State var youraccount = false
+    
     
     var body : some View{
         
@@ -30,30 +34,49 @@ struct Menu : View {
             
             if self.checkout {
                 NavigationLink(destination: CheckOutScreen(checkout: self.$checkout), isActive: self.$checkout) {
-                        Text("")
-                    }
-                    .hidden()
-                                         
+                    Text("")
+                }
+                .hidden()
             }
             else if self.foodmenu {
                 NavigationLink(destination: FoodMenu(foodmenu: self.$foodmenu, cart: self.$cart, account: self.$account), isActive: self.$checkout) {
-                                   Text("")
-                               }
-                               .hidden()
-                                                    
-                       }
-            
+                    Text("")
+                }
+                .hidden()
+                
+                if self.aboutus {
+                    NavigationLink(destination: ContactScreen(aboutus: self.$aboutus), isActive: self.$aboutus) {
+                        Text("")
+                    }
+                    .hidden()
+                }
+                else if self.youraccount {
+                    NavigationLink(destination: AccountScreen(youraccount: self.$youraccount), isActive: self.$youraccount) {
+                        Text("")
+                    }
+                    .hidden()
+                }
+            }
+            else if self.aboutus {
+                NavigationLink(destination: ContactScreen(aboutus: self.$aboutus), isActive: self.$aboutus) {
+                    Text("")
+                }
+                .hidden()
+            }
+            else if self.youraccount {
+                NavigationLink(destination: AccountScreen(youraccount: self.$youraccount), isActive: self.$youraccount) {
+                    Text("")
+                }
+                .hidden()
+            }
             
             HStack{
                 
                 Spacer()
                 
                 Button(action: {
-                    
-                     
                     self.size =  UIScreen.main.bounds.width / 1.6
                 }) {
-                    
                     Text("X")
                         .fontWeight(.bold)
                         .foregroundColor(.black)
@@ -67,11 +90,9 @@ struct Menu : View {
             }
             
             HStack{
-                
                 Button(action: {
                     self.size = UIScreen.main.bounds.width / 1.6
                     self.foodmenu = false
-             
                 }) {
                     Image(systemName: "house.fill")
                         .resizable()
@@ -89,29 +110,30 @@ struct Menu : View {
                 .cornerRadius(25)
                 
            
-            }.padding([.leading,.trailing], 20)
-            
-           HStack{
-                                               
-                          Button(action: {
-                            
-                              
-                          }) {
-                              Image("person")
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .frame(width:35 , height:35)
-                                            .padding()
-                              Text("Account").fontWeight(.heavy).foregroundColor(.black)
-                              Spacer()
-                          }
-                                .background(Color("Yellow"))
-                                .cornerRadius(25)
-                      }
-                      .padding([.leading,.trailing], 20)
+            }
+            .padding([.leading,.trailing], 20)
             
             HStack{
-                                                
+                Button(action: {
+                    self.size =  UIScreen.main.bounds.width / 1.6
+                    self.youraccount.toggle()
+                }) {
+                    Image("person")
+                        .renderingMode(.original)
+                        .resizable()
+                        .frame(width:35 , height:35)
+                        .padding()
+                        
+                    Text("Account").fontWeight(.heavy).foregroundColor(.black)
+                            
+                    Spacer()
+                }
+                .background(Color("Yellow"))
+                .cornerRadius(25)
+            }
+            .padding([.leading,.trailing], 20)
+            
+            HStack{
                 Button(action: {
                     self.size = UIScreen.main.bounds.width / 1.6
                     self.foodmenu = true
@@ -128,101 +150,82 @@ struct Menu : View {
                 }
                 .background(Color("Yellow"))
                 .cornerRadius(25)
-            }.padding([.leading,.trailing], 20)
+            }
+            .padding([.leading,.trailing], 20)
             
             HStack{
-                                     
                 Button(action: {
                     self.size =  UIScreen.main.bounds.width / 1.6
                     self.checkout.toggle()
-                    
                 }) {
                     Image("payment")
-                                  .renderingMode(.original)
-                                  .resizable()
-                                  .frame(width:35 , height:35)
-                                  .padding()
+                        .renderingMode(.original)
+                        .resizable()
+                        .frame(width:35 , height:35)
+                        .padding()
+                    
                     Text("Your order").fontWeight(.heavy).foregroundColor(.black)
+                    
                     Spacer()
                 }
-                      .background(Color("Yellow"))
-                      .cornerRadius(25)
+                .background(Color("Yellow"))
+                .cornerRadius(25)
             }
             .padding([.leading,.trailing], 20)
             
             HStack{
-                                                
-                    Button(action: {
-                       
-                               
-                    }) {
-                        Image("refund")
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width:35 , height:35)
-                            .padding()
-                        Text("Your refund").fontWeight(.heavy).foregroundColor(.black)
-                        Spacer()
-                    }
-                    .background(Color("Yellow"))
-                    .cornerRadius(25)
-            }
-            .padding([.leading,.trailing], 20)
-            
-            HStack{
-                                               
                 Button(action: {
-                              
+                    self.size =  UIScreen.main.bounds.width / 1.6
+                    self.aboutus.toggle()
                 }) {
                     Image("question")
                         .renderingMode(.original)
                         .resizable()
                         .frame(width:35 , height:35)
                         .padding()
+                    
                     Text("About us").fontWeight(.heavy).foregroundColor(.black)
+                    
                     Spacer()
                 }
                 .background(Color("Yellow"))
                 .cornerRadius(25)
-            }.padding([.leading,.trailing], 20)
+            }
+            .padding([.leading,.trailing], 20)
             
             HStack{
-                           
                  Button(action: {
+                    if(UserDefaults.standard.bool(forKey: "haveOrder") == true){
+                        self.alert.toggle()
+                        self.error = "Please, log out your account after your order is done"
+                    }
+                    else {
                         try! Auth.auth().signOut()
                         UserDefaults.standard.set(false, forKey: "status")
                         NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
+                    }
                 }) {
-               
-                    
-                Image("logout")
+                    Image("logout")
                         .renderingMode(.original)
                         .resizable()
                         .frame(width:35 , height:35)
                         .padding()
                     Text("Log out").fontWeight(.heavy).foregroundColor(.black)
-                Spacer()
+                
+                    Spacer()
+                 }
+                 .background(Color("Yellow"))
+                 .cornerRadius(25)
             }
-            .background(Color("Yellow"))
-            .cornerRadius(25)
-            }.padding([.leading,.trailing], 20)
+            .padding([.leading,.trailing], 20)
             
             Spacer()
-            
         }
-            .frame(width: UIScreen.main.bounds.width / 1.6)
-            .background(Color("Dark"))
-            .animation(.spring())
-           
-           
-      
-          
-       
+        .frame(width: UIScreen.main.bounds.width / 1.6)
+        .background(Color("Dark"))
+        .animation(.spring())
+
     }
-    
-   
-   
-   
 }
 
 //Food menu view by clicking "Full menu"
@@ -234,52 +237,54 @@ struct FoodMenu : View {
     @Binding var account : Bool
     @State var show = false
     @State var size = UIScreen.main.bounds.width / 1.6
-    
     @State var data = Type(id: -1, name: "", cName: "", price: 0,image: "")
-
+    @State var alert = false
+    @State var error = ""
+    
     var body: some View {
         NavigationView {
+            
             ZStack{
+                
                 VStack{
          
                     ZStack{
                         
                         HStack(spacing: 15){
                             
-                          Button(action: {
+                            Button(action: {
                                 self.size = 5
-                                }) {
-                                                                    
-                                    Image("menu")
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .frame(width:35 , height:35)
-                                            .padding()
-                                                                        
+                                if (UserDefaults.standard.bool(forKey: "haveOrder") == true){
+                                    getStatus()
                                 }
-                                .background(Color("Yellow"))
-                                .cornerRadius(25)
+                            }) {
+                                Image("menu")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width:35 , height:35)
+                                    .padding()
+                            }
+                            .background(Color("Yellow"))
+                            .cornerRadius(25)
                                 
-                                Spacer()
+                            Spacer()
                                 
-                                Button(action: {
-                             
-                                    self.cart.toggle()
-                                 }) {
-                                     
-                                     Image("buy")
-                                         .renderingMode(.original)
-                                     .resizable()
-                                         .frame(width:35 , height:35)
-                                        .padding()
-                                         
-                                 }
-                                .background(Color("Yellow"))
-                                .cornerRadius(25)
-                           
+                            Button(action: {
+                                if (UserDefaults.standard.bool(forKey: "haveOrder") == true){
+                                    getStatus()
+                                }
+                                
+                                self.cart.toggle()
+                            }) {
+                                Image("buy")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width:35 , height:35)
+                                    .padding()
+                            }
+                            .background(Color("Yellow"))
+                            .cornerRadius(25)
                         }
-                        
-                        
                         
                         Text("Menu")
                             .font(.title)
@@ -317,7 +322,6 @@ struct FoodMenu : View {
                                             }
                                             else {
                                                 self.show.toggle()
-                                                                   
                                             }
                                         }){
                                             VStack {
@@ -340,10 +344,8 @@ struct FoodMenu : View {
                                         .padding()
                                         .background(Color("Dark"))
                                         .cornerRadius(10)
-                                    
                                     }
                                 }
-                                
                             }
                         }
                         .padding()
@@ -397,10 +399,8 @@ struct FoodMenu : View {
                                         .padding()
                                         .background(Color("Dark"))
                                         .cornerRadius(10)
-                                    
                                     }
                                 }
-                                
                             }
                         }
                         .padding()
@@ -432,7 +432,6 @@ struct FoodMenu : View {
                                             }
                                             else {
                                                 self.show.toggle()
-                                                                   
                                             }
                                         }){
                                             VStack {
@@ -441,7 +440,6 @@ struct FoodMenu : View {
                                                     .resizable()
                                                     .frame(width: 50,height: 50)
                                                   
-                                                
                                                 Text(i.name)
                                                      .foregroundColor(Color("Yellow"))
                                                     .fontWeight(.bold)
@@ -454,10 +452,8 @@ struct FoodMenu : View {
                                         .padding()
                                         .background(Color("Dark"))
                                         .cornerRadius(10)
-                                    
                                     }
                                 }
-                                
                             }
                         }
                         .padding()
@@ -498,7 +494,6 @@ struct FoodMenu : View {
                                                     .resizable()
                                                     .frame(width: 50,height: 50)
                                                   
-                                                
                                                 Text(i.name)
                                                      .foregroundColor(Color("Yellow"))
                                                     .fontWeight(.bold)
@@ -511,28 +506,22 @@ struct FoodMenu : View {
                                         .padding()
                                         .background(Color("Dark"))
                                         .cornerRadius(10)
-                                    
                                     }
                                 }
-                                
                             }
                         }
                         .padding()
                     }
                     
-                    
                     Spacer()
-                    
-                 
                 }
                 .sheet(isPresented: self.$show) {
-                                      
-                           OrderView(data: self.data,show: self.$show)
-                    }
+                    OrderView(data: self.data,show: self.$show)
+                }
                    
                 
                HStack{
-                    Menu(foodmenu: self.$foodmenu,size: self.$size, cart: self.$cart, account: self.$account)
+                    Menu(foodmenu: self.$foodmenu, size: self.$size, cart: self.$cart, account: self.$account,alert: self.$alert,error: self.$error)
                         .cornerRadius(20)
                         .padding(.leading, -size)
                         .offset(x: -size)
@@ -540,17 +529,16 @@ struct FoodMenu : View {
                     Spacer()
                 }
                 .animation(.spring())
-
+                
+                if self.alert{
+                    errorView(alert: self.$alert, error: self.$error)
+                }
             }
             .background(Color("Grey").edgesIgnoringSafeArea(.all))
             .navigationBarTitle("")
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-           
-            
         }
-        
-       
     }
 }
 
@@ -570,16 +558,12 @@ struct CheckOutScreen : View {
                    
                     VStack(spacing: 10){
                        
-
-                        
                         VStack(spacing: 10) {
-                            
                             
                             Text("Your Order ID:")
                                 .fontWeight(.bold)
                                 .padding()
-                                 .foregroundColor(Color("Yellow"))
-                                
+                                .foregroundColor(Color("Yellow"))
                             
                             Text(String(OrderID))
                                 .fontWeight(.bold)
@@ -589,7 +573,6 @@ struct CheckOutScreen : View {
                                 .foregroundColor(Color.black)
                                 .cornerRadius(75)
                               
-                            
                             VStack(alignment: .leading){
                                 HStack {
                                     VStack(alignment: .leading){
@@ -612,7 +595,6 @@ struct CheckOutScreen : View {
                                             .fontWeight(.bold)
                                             .padding()
                                             .foregroundColor(Color.black)
-
                                     }
                                     
                                     VStack(alignment: .leading){
@@ -637,10 +619,6 @@ struct CheckOutScreen : View {
                                         .foregroundColor(Color.black)
                                     }
                                 }
-                                
-                                
-                                
-                               
                             }
                             .frame(width: UIScreen.main.bounds.width-50 )
                             .background(Color("Yellow"))
@@ -658,7 +636,7 @@ struct CheckOutScreen : View {
                             Text("Order's Status")
                                 .fontWeight(.bold)
                                 .padding()
-                                 .foregroundColor(Color("Yellow"))
+                                .foregroundColor(Color("Yellow"))
                             
                             if status == "confirm" {
                                 Image("accept")
@@ -667,7 +645,7 @@ struct CheckOutScreen : View {
                                     .frame(width: 200,height:200)
                                 
                                 Text("Your order is successfully confirm.")
-                                 .foregroundColor(Color("Yellow"))
+                                    .foregroundColor(Color("Yellow"))
                             }
                             else if status == "cooking" {
                                 Image("soup")
@@ -676,7 +654,7 @@ struct CheckOutScreen : View {
                                     .frame(width: 200,height:200)
                                 
                                 Text("Your order is preparing.")
-                                 .foregroundColor(Color("Yellow"))
+                                    .foregroundColor(Color("Yellow"))
                             }
                             else if status == "finish" {
                                 Image("dinner")
@@ -685,16 +663,14 @@ struct CheckOutScreen : View {
                                     .frame(width: 200,height:200)
                                 
                                 Text("Your order is done. Please pick up at the court")
-                                .foregroundColor(Color("Yellow"))
+                                    .foregroundColor(Color("Yellow"))
                             }
                           
-                                                     
                             HStack(spacing: 10){
-                                
-                                
+                            
                                 Rectangle()
                                     .frame(width:110,height: 10)
-                                   .foregroundColor(Color("Yellow"))
+                                    .foregroundColor(Color("Yellow"))
                                     .cornerRadius(5)
                                 
                                 if status == "cooking" || status == "finish" {
@@ -715,65 +691,55 @@ struct CheckOutScreen : View {
                                         .frame(width:110,height: 10)
                                         .foregroundColor(Color("Yellow"))
                                         .cornerRadius(5)
-                                    }
+                                }
                                 else {
                                     Rectangle()
                                         .frame(width:110,height: 10)
                                         .foregroundColor(Color.white)
                                         .cornerRadius(5)
                                 }
-                              
                             }
                                
-                            
                             HStack(spacing: 10) {
                               
                                 if status == "finish" {
                                     
                                     HStack(spacing: 5){
                                                         
-                                                        Image("back")
-                                                            .renderingMode(.original)
-                                                            .resizable()
-                                                            .frame(width:15 , height:15)
-                                                            .padding(.vertical)
-                                                            
-                                                        
-                                                        Text("Return")
-                                                            .fontWeight(.bold)
-                                                            .foregroundColor(Color.black)
-                                                            .padding(.vertical)
-                                                        
+                                        Image("back")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .frame(width:15 , height:15)
+                                            .padding(.vertical)
+    
+                                        Text("Return")
+                                            .fontWeight(.bold)
+                                            .foregroundColor(Color.black)
+                                            .padding(.vertical)
                                     }
                                     .frame(width: ((UIScreen.main.bounds.width-50)/3)-5)
                                     .background(Color("Grey"))
                                     .cornerRadius(10)
-                                    
-                                               
                                 }
                                 else {
                                     Button(action: {
                                         self.checkout.toggle()
                                     }){
                                         HStack(spacing: 5){
-                                            
                                             Image("back")
                                                 .renderingMode(.original)
                                                 .resizable()
                                                 .frame(width:15 , height:15)
                                                 .padding(.vertical)
                                                 
-                                            
                                             Text("Return")
                                                 .fontWeight(.bold)
                                                 .foregroundColor(Color.black)
                                                 .padding(.vertical)
-                                            
                                         }
                                         .frame(width: ((UIScreen.main.bounds.width-50)/3)-5)
                                         .background(Color("Yellow"))
                                         .cornerRadius(10)
-                        
                                     }
                                     .frame(width: ((UIScreen.main.bounds.width-50)/3)-5)
                                     .background(Color("Yellow"))
@@ -800,17 +766,9 @@ struct CheckOutScreen : View {
                                             .foregroundColor(Color.black)
                                             .background(Color("Yellow"))
                                             .cornerRadius(10)
-                                        }
-                                                       
-                                                   
+                                    }
                                 }
-                                
                             }
-                            
-                            
-                            
-                          
-                           
                         }
                         .frame(width: UIScreen.main.bounds.width-25,height: 410)
                         .background(Color("Dark"))
@@ -818,34 +776,30 @@ struct CheckOutScreen : View {
                         
                         Spacer()
                     }
-                    
                 }
                 else {
                     VStack{
                         Spacer()
                         
                         Text("You don't have any order")
-                        .fontWeight(.bold)
-                        .padding()
-                        .foregroundColor(Color.black)
+                            .fontWeight(.bold)
+                            .padding()
+                            .foregroundColor(Color.black)
                         
                         Button(action: {
                             self.checkout.toggle()
                         }){
                             HStack(spacing: 5){
-                                
                                 Image("back")
                                     .renderingMode(.original)
                                     .resizable()
                                     .frame(width:15 , height:15)
                                     .padding(.vertical)
                                     
-                                
                                 Text("Return")
                                     .fontWeight(.bold)
                                     .foregroundColor(Color.black)
                                     .padding(.vertical)
-                                
                             }
                             .frame(width: UIScreen.main.bounds.width-50)
                             .background(Color("Yellow"))
@@ -855,13 +809,231 @@ struct CheckOutScreen : View {
                     }
                 }
             }
-               
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("")
         .navigationBarHidden(true)
-        
+
     }
-    
 }
 
+struct AccountScreen : View {
+    
+    @Binding var youraccount : Bool
+    
+    var body: some View {
+        
+       NavigationView{
+        
+            ZStack {
+                
+                Color("Grey").edgesIgnoringSafeArea(.all)
+
+                VStack(spacing: 10){
+                       
+                    VStack(spacing: 10) {
+                            
+                        Text("Account Information")
+                            .fontWeight(.bold)
+                            .padding()
+                            .foregroundColor(Color("Yellow"))
+                            
+                        Image("avatar")
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 100,height: 100)
+                          
+                        VStack(alignment: .leading){
+                            HStack {
+                                VStack(alignment: .leading){
+                                    Text("Email: ")
+                                        .fontWeight(.bold)
+                                        .padding()
+                                        .foregroundColor(Color.black)
+                                        
+                                    Text("Name: ")
+                                        .fontWeight(.bold)
+                                        .padding()
+                                        .foregroundColor(Color.black)
+                                }
+                                    
+                                VStack(alignment: .leading){
+                                    Text(UserDefaults.standard.string(forKey: "userEmail")!)
+                                        .fontWeight(.bold)
+                                        .padding()
+                                        .foregroundColor(Color.black)
+                                        
+                                    Text("...")
+                                        .fontWeight(.bold)
+                                        .padding()
+                                        .foregroundColor(Color.black)
+                                }
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width-50)
+                        .background(Color("Yellow"))
+                        .cornerRadius(20)
+                            
+                        Spacer()
+                            
+                        Button(action: {
+                            self.youraccount.toggle()
+                        }){
+                            HStack(spacing: 5){
+                                Image("back")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width:15 , height:15)
+                                    .padding(.vertical)
+                                             
+                                    
+                                Text("Return")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical)
+                            }
+                            .frame(width: UIScreen.main.bounds.width-50)
+                            .background(Color("Yellow"))
+                            .cornerRadius(10)
+                            .padding()
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width-25,height: 820 )
+                    .background(Color("Dark"))
+                    .cornerRadius(30)
+                    .padding(.top,-60)
+               
+                    Spacer()
+                }
+            }
+       }
+       .navigationBarBackButtonHidden(true)
+       .navigationBarTitle("")
+       .navigationBarHidden(true)
+    }
+}
+
+struct ContactScreen : View {
+    
+    @Binding var aboutus : Bool
+    
+    var body: some View {
+        
+       NavigationView{
+        
+            ZStack {
+                
+                Color("Grey").edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 10){
+                       
+                    VStack(spacing: 10) {
+                            
+                        Text("Develop Informatio")
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("Yellow"))
+                            
+                              
+                        VStack(alignment: .leading){
+                            VStack {
+                                Text("SFCS iOS Application")
+                                    .fontWeight(.bold)
+                                    .padding()
+                                    .foregroundColor(Color.black)
+                                    
+                                Text("is a part of SFCS ecosystem.")
+                                    .padding()
+                                    .foregroundColor(Color.black)
+                                    
+                                Image("delivery")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 100,height: 100)
+                            
+                                Text("Created bY ĐẶNG NHẬT QUÂN on June 7 2020.")
+                                    .padding()
+                                    .foregroundColor(Color.black)
+                                    
+                                Text("Copyright © 2020 Đặng Nhật Quân. All rights reserved.")
+                                    .padding()
+                                    .foregroundColor(Color.black)
+                                    
+                                Text("with the cooperation of")
+                                    .fontWeight(.bold)
+                                    .padding()
+                                    .foregroundColor(Color.black)
+                                    
+                                HStack{
+                                    Image("BKU-logo")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 75,height: 75)
+                                    
+                                    Image("CSE-logo")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 75,height: 75)
+                                        
+                                    Image("google")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 75,height: 75)
+                                }
+                                HStack{
+                                    Image("momo")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 75,height: 75)
+                                                                
+                                    Image("fb")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 75,height: 75)
+                                                                           
+                                    Image("company")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width: 75,height: 75)
+                                }
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width-50,height: 700)
+                        .background(Color("Yellow"))
+                        .cornerRadius(20)
+                                                   
+                        Button(action: {
+                            self.aboutus.toggle()
+                        }){
+                            HStack(spacing: 5){
+                                Image("back")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width:15 , height:15)
+                                    .padding(.vertical)
+                                             
+                                Text("Return")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical)
+                            }
+                            .frame(width: UIScreen.main.bounds.width-50)
+                            .background(Color("Yellow"))
+                            .cornerRadius(10)
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width-25,height: 820 )
+                    .background(Color("Dark"))
+                    .cornerRadius(30)
+                    .padding(.top,-60)
+               
+                       
+                        
+                    Spacer()
+                }
+            }
+       }
+       .navigationBarBackButtonHidden(true)
+       .navigationBarTitle("")
+       .navigationBarHidden(true)
+    }
+}

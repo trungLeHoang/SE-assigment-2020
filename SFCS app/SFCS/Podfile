@@ -12,7 +12,10 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Database'
 pod 'Firebase/Analytics'
 pod 'SDWebImageSwiftUI'
+pod 'TensorFlowLiteSwift'
 
+ # Pods for momo
+pod "MomoiOSSwiftSdk", :git => "https://github.com/momodevelopment/MomoiOSSwiftSdk.git", :branch => "master", submodules: true
 
   # Pods for SFCS
 

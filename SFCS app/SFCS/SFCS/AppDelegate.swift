@@ -11,6 +11,7 @@ import Firebase
 import GoogleSignIn
 import FirebaseFirestore
 import FirebaseCore
+import MomoiOSSwiftSdk
 
 @UIApplicationMain
 
@@ -68,18 +69,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GIDSignInDelegate{
         func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!){
             
         }
+        
+        func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+            MoMoPayment.handleOpenUrl(url: url, sourceApp: sourceApplication!)
+            
+            return true
+        }
+        
+        func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+            MoMoPayment.handleOpenUrl(url: url, sourceApp: "")
+            return true
+        }
     
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

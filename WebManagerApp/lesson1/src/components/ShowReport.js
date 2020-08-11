@@ -10,7 +10,9 @@ const HMSecondsColon = (Time.getHours() < 10 ? '0' + Time.getHours() : Time.getH
 + ':' + (Time.getMinutes() < 10 ? '0' + Time.getMinutes() : Time.getMinutes()).toString() 
 + ':' + (Time.getSeconds() < 10 ? '0' + Time.getSeconds() : Time.getSeconds()).toString();
 
-const DMYear = Time.getDate().toString() + (Time.getMonth() + 1).toString() + Time.getFullYear().toString();
+const DMYear = (Time.getMonth() + 1 < 10 ? '0' + (Time.getMonth() + 1).toString() : (Time.getMonth() + 1).toString())
+	+ (Time.getDate() < 10 ? '0' + Time.getDate().toString() : Time.getDate().toString())
+	+ Time.getFullYear().toString();
 const DMYearSlash = Time.getDate().toString() + '/' + (Time.getMonth() + 1).toString() + '/' + Time.getFullYear().toString();
 
 class ShowReport extends Component {
@@ -62,6 +64,7 @@ class ShowReport extends Component {
 		+ (Time.getMinutes() < 10 ? '0' + Time.getMinutes() : Time.getMinutes()).toString() 
 		+ (Time.getSeconds() < 10 ? '0' + Time.getSeconds() : Time.getSeconds()).toString();
 
+		console.log(DMYear + '/' + HMSeconds)
 		dbReport.child(DMYear + '/' + HMSeconds).set(shortenListReport);
 
 		/* Set State */
@@ -95,9 +98,11 @@ class ShowReport extends Component {
 				return 0;
 			});
 			
-			const dateSlash =  date.substr(0, date.length - 5)
-				+ '/' + date.substr(date.length - 5, 1)
+			const dateSlash =  date.substr(2, 2)
+				+ '/' + date.substr(0, 2)
 				+ '/' + date.substr(-4);
+
+			console.log(dateSlash)
 				
 			listReportJSX = [
 				<div className= 'contain centering red'>

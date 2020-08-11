@@ -21,8 +21,7 @@ var schedule = require('node-schedule');
 
 schedule.scheduleJob('0 0 0 * * *', function(){
   const Time = new Date();
-  //const thisDay = (Time.getMonth() + 1).toString() + (Time.getDate() < 10 ? '0' + Time.getDate() : Time.getDate()).toString();
-  const thisDay = '701';
+  const thisDay = (Time.getMonth() + 1).toString() + (Time.getDate() < 10 ? '0' + Time.getDate() : Time.getDate()).toString();
   const url_nOrder = 'nOrder';
   const url_orderList = 'orderList';
   const url_dataByDate = 'dataByDate';
@@ -73,6 +72,7 @@ class Manager extends Component {
 
       var newItemListReport = [];
       for(const order of this.state.orderList){
+        if(order.itemList && order)
           for(const dish of order.itemList)
             newItemListReport.push(dish);
       }     
@@ -144,8 +144,11 @@ class Manager extends Component {
       });
 
       url += indexDB + '/isDone';
-      firebase.database().ref(url).set(true);
+      const urlStatus = 'orderList/' + indexDB + '/status'
 
+      firebase.database().ref(url).set(true);
+      firebase.database().ref(urlStatus).set('finish')
+      
       /* Sort order when in sorting mode - in local */
       const newOrderList = this.state.orderList.map((item) => {
         if(item.ID === itemID){
